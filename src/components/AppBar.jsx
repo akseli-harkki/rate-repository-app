@@ -3,6 +3,9 @@ import { Link } from 'react-router-native';
 import Constants from 'expo-constants';
 import Text from './Text';
 import theme from '../theme';
+import { useQuery } from '@apollo/client';
+import { CURRENT_USER } from '../graphql/queries';
+import useSignOut from '../hooks/useSignOut';
 
 const styles = StyleSheet.create({
   container: {
@@ -19,25 +22,32 @@ const styles = StyleSheet.create({
   }
 });
 
-const onPressFunction = () => {
-  console.log('pressed')
-}
-
 const AppBar = () => {
-  return (
-    
-      <View style={styles.container}>
-        <ScrollView horizontal>
+  const user = useQuery(CURRENT_USER)
+  const signOut = useSignOut()
+  if(user.loading) {
+    return null
+  }
+  
+  return (    
+    <View style={styles.container}>
+      <ScrollView horizontal>          
+        <Link to='/'>
+          <Text style={styles.tab}>Repositories</Text>
+        </Link>
+        {!user.data.me && (
           <Link to='/signIn'>
             <Text style={styles.tab}>Sign In</Text>
           </Link>
-          <Link to='/'>
-            <Text style={styles.tab}>Repositories</Text>
-          </Link>
-        </ScrollView>
-        
-      </View>
-     ) 
+        )}
+        {user.data.me && (
+          <Pressable onPress={() => signOut()}>
+            <Text style={styles.tab}>{user.data.me.username} Sign Out</Text>
+          </Pressable>
+        )}          
+      </ScrollView>        
+    </View>
+  ) 
 };
 
 export default AppBar;

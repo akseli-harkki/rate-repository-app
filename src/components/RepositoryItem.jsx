@@ -1,5 +1,5 @@
-import { View, Image, StyleSheet } from "react-native"
-import Text from "./Text"
+import { View, Image, StyleSheet } from 'react-native'
+import Text from './Text'
 
 const headerStyles = StyleSheet.create({
   container: {
@@ -35,12 +35,11 @@ const headerStyles = StyleSheet.create({
 
 const Header = ({item}) => {
   return (
-
     <View style={headerStyles.container}>
       <View style={headerStyles.avatarContainer}>
         <Image
-        style={headerStyles.avatar}
-        source={{uri: item.ownerAvatarUrl}}
+          style={headerStyles.avatar}
+          source={{uri: item.ownerAvatarUrl}}
         /> 
       </View>
       <View style={headerStyles.descriptionContainer}>
@@ -48,9 +47,7 @@ const Header = ({item}) => {
         <Text>{item.description}</Text>        
         <Text style={headerStyles.language}>{item.language}</Text>       
       </View>     
-    </View> 
-
-      
+    </View>       
   )
 }
 

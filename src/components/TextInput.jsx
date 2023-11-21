@@ -1,5 +1,5 @@
-import { TextInput as NativeTextInput, StyleSheet } from 'react-native';
-import theme from '../theme';
+import { TextInput as NativeTextInput, StyleSheet } from 'react-native'
+import theme from '../theme'
 
 const styles = StyleSheet.create({
   input: {
@@ -11,16 +11,16 @@ const styles = StyleSheet.create({
   inputError: {
     borderColor: theme.colors.error,
   }
-});
+})
 
 const TextInput = ({ style, error, ...props }) => {
   const textInputStyle = [
     style,
     styles.input,
     error && styles.inputError
-  ];
+  ]
 
-  return <NativeTextInput style={textInputStyle} placeholderTextColor={'#ADAAAC'} {...props} />;
-};
+  return <NativeTextInput style={textInputStyle} placeholderTextColor={'#ADAAAC'} {...props} />
+}
 
-export default TextInput;
+export default TextInput

@@ -1,5 +1,8 @@
-import { View, Image, StyleSheet } from 'react-native'
+import { View, Image, StyleSheet, Pressable } from 'react-native'
 import Text from './Text'
+import theme from '../theme'
+import { useNavigate } from 'react-router-native'
+import { openURL } from 'expo-linking'
 
 const headerStyles = StyleSheet.create({
   container: {
@@ -27,10 +30,10 @@ const headerStyles = StyleSheet.create({
     color: 'white',
     margin: 5,
     padding: 3,
-    backgroundColor: '#7979cf',
+    backgroundColor: theme.colors.blue,
     borderRadius: 7,
   }
-});
+})
 
 
 const Header = ({item}) => {
@@ -96,20 +99,45 @@ const Footer = ({item}) => {
   )
 }
 
+const GitHubButton = ({item}) => {
+  const openLink = () => {
+    openURL(item.url)
+  }
+  return (
+    <Pressable onPress={openLink}>
+      <Text style={theme.button}>Open in GitHub</Text>
+    </Pressable>
+  )
+}
+
 const repositoryStyles = StyleSheet.create({
   container: {
     padding: 5,
-    margin: 5,
     backgroundColor: 'white',
   }
 })
 
-const RepositoryItem = ({item}) => {
+const RepositoryItem = ({item, single}) => {
+  const navigate = useNavigate()
+  if(single) {
+    return (
+      <View style={repositoryStyles.container}>
+        <Header item={item} />
+        <Footer item={item} />
+        <GitHubButton item={item} />
+      </View>
+    )
+  }
+  const openSingleView = () => {
+    navigate(`/repositories/${item.id}`)
+  }
   return (
-    <View style={repositoryStyles.container}>
-      <Header item={item} />
-      <Footer item={item} />
-    </View>
+    <Pressable onPress={openSingleView}>
+      <View testID='repositoryItem' style={repositoryStyles.container}>
+        <Header item={item} />
+        <Footer item={item} />
+      </View>
+    </Pressable>    
   )
 }
 export default RepositoryItem

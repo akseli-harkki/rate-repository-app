@@ -1,6 +1,6 @@
-import { useMutation, useApolloClient } from '@apollo/client';
-import { AUTHENTICATE} from '../graphql/mutations';
-import useAuthStorage from './useAuthStorage';
+import { useMutation, useApolloClient } from '@apollo/client'
+import { AUTHENTICATE} from '../graphql/mutations'
+import useAuthStorage from './useAuthStorage'
 
 const useSignIn = () => {
   const authStorage = useAuthStorage()
@@ -14,7 +14,7 @@ const useSignIn = () => {
     return data
   }
   
-  return [signIn, results];
+  return [signIn, results]
 }
 
 export default useSignIn

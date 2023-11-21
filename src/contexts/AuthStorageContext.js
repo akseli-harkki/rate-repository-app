@@ -1,5 +1,5 @@
-import { createContext } from 'react';
+import { createContext } from 'react'
 
-const AuthStorageContext = createContext();
+const AuthStorageContext = createContext()
 
-export default AuthStorageContext;
+export default AuthStorageContext

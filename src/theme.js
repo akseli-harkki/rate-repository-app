@@ -1,4 +1,4 @@
-import { Platform } from 'react-native';
+import { Platform } from 'react-native'
 
 const theme = {
   colors: {
@@ -7,6 +7,7 @@ const theme = {
     primary: '#0366d6',
     background: '#423140',
     error: '#db2b2b',
+    blue: '#7979cf'
   },
   fontSizes: {
     body: 14,
@@ -22,6 +23,17 @@ const theme = {
     normal: '400',
     bold: '700',
   },
-};
+  button: {
+    color: 'white',
+    fontWeight: 'bold',
+    backgroundColor: '#8181cd',
+    padding: 10,
+    borderRadius: 10,
+    textAlign: 'center'
+  },
+  separator: {
+    height: 10
+  }
+}
 
-export default theme;
+export default theme
